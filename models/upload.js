@@ -10,15 +10,33 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      models.upload.belongsTo(models.label)
+      models.upload.belongsTo(models.user)
+      models.upload.belongsToMany(models.tag, {through: "uploadTags"})
+      models.upload.belongsToMany(models.user, {through: "saves"})
     }
   };
   upload.init({
-    userId: DataTypes.INTEGER,
-    labelId: DataTypes.INTEGER,
-    artist: DataTypes.STRING,
-    album: DataTypes.STRING,
-    isPublic: DataTypes.BOOLEAN,
+    userId: {
+      allowNull: false,
+      type: DataTypes.INTEGER,
+    },
+    labelId: {
+      allowNull: false,
+      type: DataTypes.INTEGER,
+    },
+    artist: {
+      allowNull: false,
+      type: DataTypes.STRING,
+    },
+    album: {
+      allowNull: false,
+      type: DataTypes.STRING,
+    },
+    isPublic: {
+      allowNull: false,
+      type: DataTypes.BOOLEAN,
+    },
     genre: DataTypes.STRING
   }, {
     sequelize,
