@@ -19,25 +19,30 @@ module.exports = (sequelize, DataTypes) => {
   upload.init({
     userId: {
       allowNull: false,
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER
     },
     labelId: {
       allowNull: false,
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER
+    },
+    music: {
+      allowNull: false,
+      type: DataTypes.STRING
     },
     artist: {
       allowNull: false,
-      type: DataTypes.STRING,
+      type: DataTypes.STRING
     },
     album: {
       allowNull: false,
-      type: DataTypes.STRING,
+      type: DataTypes.STRING
     },
     isPublic: {
       allowNull: false,
-      type: DataTypes.BOOLEAN,
+      type: DataTypes.BOOLEAN
     },
-    genre: DataTypes.STRING
+    genre: DataTypes.STRING,
+    artwork: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'upload',
