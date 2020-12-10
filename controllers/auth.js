@@ -3,31 +3,26 @@ const db = require('../models')
 const login = (req, res) => {
   res.json({ 
     user: req.user.id,
-    username: req.user.username
+    artistName: req.user.artistName
   })
 }
 
-
 const register = (req, res) => {
-  const { name, username, email, password } = req.body
+  const { artistName, email, password } = req.body
   console.log(req.body)
   
-  // validate the POSTed data - making sure we have a name, an email, a pw
-  if (!name || !username || !email || !password) {
-    return res.json({ message: 'Please enter a name, an username, an email, and a password' })
+  if (!artistName || !email || !password) {
+    return res.json({ message: 'Please enter an artist/band name, an email, and a password' })
   }
 
-  // make sure the user doesn't already exist
   db.user.findOne({ where: { email } })
     .then(foundUser => {
       if (foundUser) {
         return res.json({ message: "A user with that email already exists" })
       }
 
-      // if the user doesnt exist, create and save a user to the DB
       db.user.create({
-        name,
-        username,
+        artistName,
         email,
         password
       }).then(newUser => {

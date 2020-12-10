@@ -1,14 +1,12 @@
+require('dotenv').config();
 const express = require('express')
 const cors = require('cors')
 const session = require('express-session')
 const morgan = require('morgan')
-
 const routes = require('./routes')
 const passport = require('passport')
-
 const port = process.env.PORT || 4000
 const app = express()
-
 
 app.use(morgan('dev'))
 
@@ -35,7 +33,8 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.use('/api/v1/auth', routes.auth)
-// add other routes here
-
+app.use('/api/v1/label', routes.label)
+app.use('/api/v1/tag', routes.tag)
+app.use('/api/v1/upload', routes.upload)
 
 app.listen(port, () => console.log(`Server running on port ${port}`))
