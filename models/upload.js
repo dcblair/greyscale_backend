@@ -25,6 +25,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.INTEGER
     },
+    name: {
+      allowNull: false,
+      type: DataTypes.STRING
+    },
     music: {
       allowNull: false,
       type: DataTypes.STRING
@@ -41,8 +45,14 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.BOOLEAN
     },
-    genre: DataTypes.STRING,
-    artwork: DataTypes.STRING
+    genre: {
+      allowNull: false,
+      type: DataTypes.STRING,
+    },
+    artwork: {
+      allowNull: false,
+      type: DataTypes.STRING
+    } 
   }, {
     sequelize,
     modelName: 'upload',
