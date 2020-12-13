@@ -40,14 +40,7 @@ const show = (req, res) => {
 }
 
 const create = (req, res) => {
-  db.upload.create({
-    userId,
-    labelId,
-    artist,
-    album,
-    isPublic,
-    genre
-  }).then((savedUpload) => {
+  db.upload.create(req.body).then((savedUpload) => {
     res.status(200).json({ upload: savedUpload })
   })
 }
@@ -65,7 +58,7 @@ const update = (req, res) => {
     }
   }).then((updatedUpload) => {
     console.log(req.params.id)
-    if (!updatedupload) return res.json({
+    if (!updatedUpload) return res.json({
       message: "No upload with that ID found."
     })
     res.status(200).json({ upload: updatedUpload })

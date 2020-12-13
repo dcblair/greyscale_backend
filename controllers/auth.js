@@ -32,6 +32,34 @@ const register = (req, res) => {
     })
 }
 
+const show = (req, res) => {
+  db.user.findByPk(req.params.id).then((foundUser) => {
+    if (!foundUser) return res.json({
+      message: 'No user with that ID has been found.'
+    })
+    res.status(200).json({user: foundUser})
+  })
+}
+
+const update = (req, res) => {
+  db.user.update({
+    artistName: req.body.artistName,
+    email: req.body.email,
+    image: req.body.image
+  }, {
+    where: {
+      id: req.params.id
+    }
+  }).then((updatedUser) => {
+    console.log(req.params.id)
+    if (!updatedUser) return res.json({
+      message: "No user with that ID found."
+    })
+    res.status(200).json({ user: updatedUser })
+  })
+}
+
+
 const logout = (req, res) => {
   if (!req.user) {
     return res.json({ message: 'No User to log out' })
@@ -43,5 +71,7 @@ const logout = (req, res) => {
 module.exports = {
   login,
   register,
+  show,
+  update,
   logout
 }
