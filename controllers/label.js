@@ -46,7 +46,9 @@ const update = (req, res) => {
 // delete label
 const destroy = (req, res) => {
   db.label.destroy({
-    where: {id: req.params.id}
+    where: {
+      id: req.params.id
+    }
   }).then(() => {
     res.status(200)
   })

@@ -68,10 +68,21 @@ const logout = (req, res) => {
   res.json({ message: "User logged out" })
 }
 
+const destroy = (req, res) => {
+  db.user.destroy({
+    where: {
+      id: req.params.id
+    }
+  }).then(() => {
+    res.status(200)
+  })
+}
+
 module.exports = {
   login,
   register,
   show,
   update,
-  logout
+  logout,
+  destroy
 }

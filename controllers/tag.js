@@ -30,7 +30,9 @@ const create = (req, res) => {
 // delete tag - admin protected
 const destroy = (req, res) => {
   db.tag.destroy({
-    where: {id: req.params.id}
+    where: {
+      id: req.params.id
+    }
   }).then(() => {
     res.status(200)
   })

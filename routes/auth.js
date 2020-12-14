@@ -7,5 +7,6 @@ router.post('/login', passport.authenticate('local'), ctrl.auth.login)
 router.post('/register', ctrl.auth.register)
 router.put('/:id', ctrl.auth.update)
 router.delete('/logout', ctrl.auth.logout)
+router.delete('/:id', ctrl.auth.destroy)
 
 module.exports = router;
