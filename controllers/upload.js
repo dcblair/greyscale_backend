@@ -57,7 +57,6 @@ const show = (req, res) => {
 }
 
 const search = (req, res) => {
-  console.log(req.params.searchInput)
   db.upload.findAll({
     where: {
       "isPublic": true,
@@ -69,13 +68,13 @@ const search = (req, res) => {
           [Op.iLike]: req.params.searchInput 
         }},
         {music: {
-          [Op.like]: req.params.searchInput
+          [Op.iLike]: req.params.searchInput
         }},
         {artist: {
-          [Op.like]: req.params.searchInput
+          [Op.iLike]: req.params.searchInput
         }},
         {album: {
-          [Op.like]: req.params.searchInput
+          [Op.iLike]: req.params.searchInput
         }}
       ]
     }
