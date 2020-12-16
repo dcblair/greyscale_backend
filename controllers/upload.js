@@ -1,5 +1,5 @@
 const db = require('../models')
-const Op = db.sequelize.Op
+const Op = require('Sequelize').Op
 
 const index = (req, res) => {
   db.upload.findAll({
@@ -57,16 +57,33 @@ const show = (req, res) => {
 }
 
 const search = (req, res) => {
+  console.log(req.params.searchInput)
   db.upload.findAll({
     where: {
-      'isPublic': true,
-      // name: { [Op.like]: req.body.searchInput },
-      // music: { [Op.like]: req.body.searchInput },
-      // artist: { [Op.like]: req.body.searchInput },
-      // album: { [Op.like]: req.body.searchInput },
-      genre: { [Op.like]: req.body.searchInput },
+      "isPublic": true,
+      [Op.or]: [
+        {name: {
+          [Op.iLike]: req.params.searchInput
+        }},
+        { genre: {
+          [Op.iLike]: req.params.searchInput 
+        }},
+        {music: {
+          [Op.like]: req.params.searchInput
+        }},
+        {artist: {
+          [Op.like]: req.params.searchInput
+        }},
+        {album: {
+          [Op.like]: req.params.searchInput
+        }}
+      ]
     }
   })
+    .then((uploads) => {
+      console.log(uploads)
+      res.status(200).json({ uploads: uploads })
+    })
 }
 
 const create = (req, res) => {
