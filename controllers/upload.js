@@ -1,5 +1,5 @@
 const db = require('../models')
-const Op = require('Sequelize').Op
+const Op = require('sequelize').Op
 
 const index = (req, res) => {
   db.upload.findAll({
