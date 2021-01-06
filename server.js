@@ -13,7 +13,7 @@ app.use(morgan('dev'))
 app.use(express.json())
 
 const corsOptions = {
-  origin: [process.env.CLIENT_URL],
+  origin: ['http://localhost:3000'],
   credentials: true,
   optionsSuccessStatus: 204
 }
