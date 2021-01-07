@@ -13,7 +13,7 @@ app.use(morgan('dev'))
 app.use(express.json())
 
 const corsOptions = {
-  origin: ['https://greyscale-backend.herokuapp.com/'],
+  origin: ['http://localhost:3000', process.env.CLIENT_URL],
   credentials: true,
   optionsSuccessStatus: 204
 }
