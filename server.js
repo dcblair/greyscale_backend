@@ -13,7 +13,7 @@ app.use(morgan('dev'))
 app.use(express.json())
 
 const corsOptions = {
-  origin: ['http://localhost:3000', 'https://greyscale-music.firebaseapp.com/'],
+  origin: ['http://localhost:3000', 'https://greyscale-music.web.app/'],
   credentials: true,
   optionsSuccessStatus: 204
 }
