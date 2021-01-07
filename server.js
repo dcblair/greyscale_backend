@@ -13,7 +13,7 @@ app.use(morgan('dev'))
 app.use(express.json())
 
 const corsOptions = {
-  origin: ['https://greyscale-music.herokuapp.com/'],
+  origin: ['https://greyscale-backend.herokuapp.com/'],
   credentials: true,
   optionsSuccessStatus: 204
 }
